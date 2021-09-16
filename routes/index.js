@@ -10,6 +10,8 @@ const client = new Client({
   }
 });
 
+client.connect();
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
@@ -17,12 +19,13 @@ router.get('/', function (req, res, next) {
 
 // get products
 router.get('/products', function (req, res, next) {
-  client.connect();
   client.query('SELECT * FROM products;', (err, d) => {
     if (err) throw err;
-    client.end();
     // send response
     res.status(200).send(d.rows);
+
+    // close connection
+    // client.end();
   });
   
 });
