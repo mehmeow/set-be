@@ -11,9 +11,9 @@ var app = express();
 
 app.use(cors());
 
-app.listen(80, function() {
-  console.log("CORS-enabled web server listening on port 80");
-});
+// app.listen(80, function() {
+//   console.log("CORS-enabled web server listening on port 80");
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
