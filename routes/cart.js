@@ -12,19 +12,13 @@ const client = new Client({
 
 client.connect();
 
-/* GET home page. */
+/* GET users listing. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-// get products
-router.get('/products', function (req, res, next) {
-  client.query('SELECT * FROM products;', (err, d) => {
+  client.query('SELECT * FROM cart;', (err, d) => {
     if (err) throw err;
     // send response
     res.status(200).send(d.rows);
   });
 });
-
 
 module.exports = router;
