@@ -45,9 +45,8 @@ router.get('/', function (req, res, next) {
 
 /* ADD cart listing. */
 router.post('/addcart', function (req, res, next) {
-  const timestamp = new Date().getTime();
   client.query(`INSERT INTO cart
-    (product_id,timestamp) VALUES (${req.body.product_id},${timestamp})
+    (product_id) VALUES (${req.body.product_id})
     RETURNING *;
     `, (err, d) => {
     if (err) throw err;
