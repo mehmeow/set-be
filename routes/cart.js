@@ -24,8 +24,6 @@ function getSum(items, key) {
   }, 0);
 };
 
-// const timestamp = new Date().getTime();
-
 /* GET cart listing. */
 router.get('/', function (req, res, next) {
   client.query(`SELECT * FROM cart
@@ -47,8 +45,9 @@ router.get('/', function (req, res, next) {
 
 /* ADD cart listing. */
 router.post('/addcart', function (req, res, next) {
+  const timestamp = new Date().getTime();
   client.query(`INSERT INTO cart
-    (product_id) VALUES (${req.body.product_id})
+    (product_id,timestamp) VALUES (${req.body.product_id},${timestamp})
     RETURNING *;
     `, (err, d) => {
     if (err) throw err;
