@@ -75,7 +75,8 @@ router.get('/history', function (req, res, next) {
   client.query(`SELECT * FROM cart
     LEFT JOIN products on (products.product_id = cart.product_id)
     LEFT JOIN status_constant on (status_constant.status_id = cart.status_id)
-    WHERE cart.status_id != 1;
+    WHERE cart.status_id != 1
+    ORDER BY cart.order_id DESC;
     `, (err, d) => {
     if (err) throw err;
     // handle cart data
